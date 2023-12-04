@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active:
+      on-profile: develop
+management:
+  endpoint:
+    health:
+      show-details: always
