@@ -9,4 +9,4 @@
 - Github Actions에 Push, PR CI/CD 환경을 구축
 - Github Actions에 checksytle 추가
 - push 방지 및 강제 PR 추가 (git-main_branch) 
-- test중
+- 원격 branch 자동 지움 기능 추가
