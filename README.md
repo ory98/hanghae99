@@ -6,4 +6,6 @@
 - 서버 Phase 별 yml파일 분리 (develop/staging/product)
 
 > 1주차 - Step2.빌드 환경 구축
-- Github Actions 를 이용해 Push, PR CI/CD 환경을 구축
+- Github Actions에 Push, PR CI/CD 환경을 구축
+- Github Actions에 checksytle 추가
+- push 방지 및 강제 PR 추가 (git-main_branch)
