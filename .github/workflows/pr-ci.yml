@@ -1,0 +1,36 @@
+name: pr-ci
+on: pull_request
+
+jobs:
+
+  checkstyle_job:
+    runs-on: ubuntu-latest
+    name: Checkstyle job
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run check style
+      uses: nikitasavinov/checkstyle-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: 'github-pr-check'
+        tool_name: 'testtool'
+
+  test:
+    runs-on: ubuntu-latest
+    name: Check Test Code
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: Run tests
+        run: ./gradlew test
