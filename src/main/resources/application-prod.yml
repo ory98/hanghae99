@@ -1,4 +1,4 @@
 spring:
   profiles:
     active:
-      on-profile: product
+      on-profile: prod
