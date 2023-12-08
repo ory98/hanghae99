@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         run: ./gradlew test
 
-  build:
+  deploy:
     name: Build Code
     needs: test
     runs-on: ubuntu-latest
@@ -57,17 +57,8 @@ jobs:
         with:
           arguments: build
 
-  deploy:
-    name: CD / Deploy ECR, ECS
-    needs: [test, build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Docker build
         run: |
           docker login -u ${{ secrets.DOCKER_ID }} -p ${{ secrets.DOCKER_PWD }}
           docker build -t ory98/deploy .
           docker push ory98/deploy
-      
