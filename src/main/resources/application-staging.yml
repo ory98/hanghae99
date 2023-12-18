@@ -1,4 +1,0 @@
-spring:
-  profiles:
-    active:
-      on-profile: staging
