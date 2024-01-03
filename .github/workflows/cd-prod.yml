@@ -83,23 +83,26 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Download ECS Task Definition
-        run: |
-          aws ecs describe-task-definition --task-definition task-definition-deploy-prod --query taskDefinition > task-definition.json    
-
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: setting-task-definition
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: task-definition.json
-          container-name: container-deploy-prod
-          image: ${{ steps.build-image.outputs.image }}
+#      - name: Download ECS Task Definition
+#        run: |
+#          aws ecs describe-task-definition --task-definition task-definition-deploy-prod --query taskDefinition > task-definition.json
+#
+#      - name: Fill in the new image ID in the Amazon ECS task definition
+#        id: setting-task-definition
+#        uses: aws-actions/amazon-ecs-render-task-definition@v1
+#        with:
+#          task-definition: task-definition.json
+#          container-name: container-deploy-prod
+#          image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.setting-task-definition.outputs.task-definition }}
-          service: deploy-service
-          cluster: deploy-container-cluster
-          wait-for-service-stability: false
+#        run: aws-actions/amazon-ecs-deploy-task-definition@v1
+#        with:
+#          task-definition: ${{ steps.setting-task-definition.outputs.task-definition }}
+#          service: deploy-service
+#          cluster: deploy-container-cluster
+#          wait-for-service-stability: false
+
+#        run: ecs 배포의 명령어 작성 > cli update 서비스
+#        https://docs.aws.amazon.com/cli/latest/reference/ecs/update-service.html 참고
       
