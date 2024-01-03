@@ -18,6 +18,7 @@ import kr.hanghae.deploy.dto.order.service.request.OrderServiceRequest;
 import kr.hanghae.deploy.dto.order.service.response.OrderResponse;
 import kr.hanghae.deploy.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,13 +29,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class OrderService {
 
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final PointRepository pointRepository;
     private final UserService userService;
-    private final EntityManager em;
 
     @Transactional
     @DistributedLock(key = "T(java.lang.String).format('Order%s', #username)")
@@ -70,6 +71,7 @@ public class OrderService {
         pointRepository.save(minusPoint);
 
         List<OrderProduct> orderProductList = newOrder.getOrderProducts();
+        log.info(username + " 회원의 주문이 성공하였습니다. 현재 보유 포인트 : " + user.getPoint());
 
         // 외부 데이터 플랫폼 전송 (실패하더라도 주문 성공)
 
