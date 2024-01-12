@@ -1,6 +1,6 @@
 package kr.hanghae.deploy.service.order;
 
-import jakarta.persistence.EntityManager;
+import kr.hanghae.deploy.domain.order.OrderedEvent;
 import kr.hanghae.deploy.redisson.DistributedLock;
 import kr.hanghae.deploy.domain.order.Order;
 import kr.hanghae.deploy.domain.order.OrderRepository;
@@ -12,13 +12,13 @@ import kr.hanghae.deploy.domain.point.PointState;
 import kr.hanghae.deploy.domain.product.Product;
 import kr.hanghae.deploy.domain.product.ProductRepository;
 import kr.hanghae.deploy.domain.user.User;
-import kr.hanghae.deploy.domain.user.UserRepository;
 import kr.hanghae.deploy.dto.order.OrderProductInfo;
 import kr.hanghae.deploy.dto.order.service.request.OrderServiceRequest;
 import kr.hanghae.deploy.dto.order.service.response.OrderResponse;
 import kr.hanghae.deploy.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +36,8 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final PointRepository pointRepository;
     private final UserService userService;
+    private final ApplicationEventPublisher publisher;
+
 
     @Transactional
     @DistributedLock(key = "T(java.lang.String).format('Order%s', #username)")
@@ -74,6 +76,7 @@ public class OrderService {
         log.info(username + " 회원의 주문이 성공하였습니다. 현재 보유 포인트 : " + user.getPoint());
 
         // 외부 데이터 플랫폼 전송 (실패하더라도 주문 성공)
+        publisher.publishEvent(new OrderedEvent(newOrder.getId(), orderProductList, totalPrice));
 
         return OrderResponse.of(user.getUsername(), orderProductList, totalPrice);
     }

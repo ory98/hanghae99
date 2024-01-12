@@ -7,6 +7,7 @@ import kr.hanghae.deploy.domain.user.User;
 import kr.hanghae.deploy.domain.user.UserRepository;
 import kr.hanghae.deploy.dto.point.service.request.PointRequestService;
 import kr.hanghae.deploy.dto.point.service.response.PointResponse;
+import kr.hanghae.deploy.redisson.DistributedLock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
