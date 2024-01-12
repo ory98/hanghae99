@@ -32,7 +32,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.redisson:redisson-spring-boot-starter:3.22.1'
     implementation 'org.projectlombok:lombok:1.18.26'
-
+    // aws 로그백
+    implementation "ca.pjer:logback-awslogs-appender:1.6.0"
+    implementation 'org.codehaus.janino:janino:3.1.9'
 
     // db
     runtimeOnly 'com.h2database:h2'
