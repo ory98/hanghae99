@@ -2,14 +2,9 @@ package kr.hanghae.deploy.domain.user;
 
 import jakarta.persistence.*;
 import kr.hanghae.deploy.domain.BaseEntity;
-import kr.hanghae.deploy.domain.order.Order;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -24,6 +19,9 @@ public class User extends BaseEntity {
     private String username;
 
     private Long point;
+
+    @Version
+    private Long version;
 
     public User(String username) {
         this.username = username;
