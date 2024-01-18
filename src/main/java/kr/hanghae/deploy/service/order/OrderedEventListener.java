@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class OrderedEventListener {
     @Async
     @EventListener
-    public void sendPush(OrderedEvent event) throws RuntimeException {
-        log.info(String.format("외부로 데이터 성공 [주문번호 : %s]", event.getOrderId()));
+    public void sendDataOut(OrderedEvent event) throws RuntimeException {
+        log.info(String.format("외부로 데이터 전송 성공 [주문번호 : %s]", event.getOrderId()));
     }
 }

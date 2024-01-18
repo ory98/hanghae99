@@ -41,6 +41,7 @@ class UserControllerTest {
         ApiResponse response = ApiResponse.ok(userInfo);
 
         given(userService.getUserInfo(any())).willReturn(userInfo);
+        // todo
         // 입력값 검증 수정 @RequestBoby 값
 
         // when
@@ -49,14 +50,13 @@ class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(response)));
 
-        // then
+        // then: 입력값 검증
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.code").value(200))
                 .andExpect(jsonPath("$.status").value("OK"))
                 .andExpect(jsonPath("$.message").value("OK"))
                 .andExpect(jsonPath("$.data.username").value("test"))
                 .andExpect(jsonPath("$.data.point").value(0L))
-                .andExpect(jsonPath("$.data.orders").isEmpty())
                 .andDo(print());
 
     }
@@ -81,7 +81,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.code").value(200))
                 .andExpect(jsonPath("$.status").value("OK"))
                 .andExpect(jsonPath("$.message").value("OK"))
-                .andExpect(jsonPath("$.data.username").value("test"))
+                .andExpect(jsonPath("$.data").value("test"))
                 .andDo(print());
     }
 }

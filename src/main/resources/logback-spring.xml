@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- 로그 패턴에 색상 적용 %clr(pattern){color} -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+
     <springProperty name="AWS_ACCESS_KEY" source="cloud.aws.credentials.accessKey"/>
     <springProperty name="AWS_SECRET_KEY" source="cloud.aws.credentials.secretKey"/>
     <springProperty name="Log_Group_Name:local" source="log.group.name"/>
@@ -14,7 +17,7 @@
 
     <appender name="ASYNC_AWS_LOGS" class="ca.pjer.logback.AwsLogsAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>ERROR</level>
         </filter>
         <layout>
             <pattern>%d{yyyyMMdd'T'HHmmss} %thread %level %logger{15} %msg%n</pattern>
@@ -59,9 +62,10 @@
 
     <springProfile name="dev">
         <logger name="org.springframework" level="INFO"/>
-        <logger name="kr.hanghae.deploy" level="INFO">
-            <appender-ref ref="ASYNC_AWS_LOGS"/>
-        </logger>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+<!--            <appender-ref ref="ASYNC_AWS_LOGS"/>-->
+        </root>
     </springProfile>
 
 </configuration>

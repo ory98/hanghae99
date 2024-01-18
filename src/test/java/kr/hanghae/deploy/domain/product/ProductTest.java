@@ -1,6 +1,5 @@
 package kr.hanghae.deploy.domain.product;
 
-import kr.hanghae.deploy.domain.order.OrderRepository;
 import kr.hanghae.deploy.service.order.OrderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,8 +21,8 @@ public class ProductTest {
     @Test
     @DisplayName("주문된 상품의 재고보다 저장된 상품의 재고가 많거나 같으면 성공한다.")
     void checkOrderProductStock_success() {
+        // todo
         // given : 테스트를 위해 주어질 값들
-
         // when : 어떤 것을 테스트할지 정의
         // then : 값에 대한 검증
     }
@@ -31,8 +30,8 @@ public class ProductTest {
     @Test
     @DisplayName("주문된 상품의 재고보다 저장된 상품의 재고가 적으면 실패한다.")
     void checkOrderProductStock_fail() {
+        // todo
         // given : 테스트를 위해 주어질 값들
-
         // when : 어떤 것을 테스트할지 정의
         // then : 값에 대한 검증
     }

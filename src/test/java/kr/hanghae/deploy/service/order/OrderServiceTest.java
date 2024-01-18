@@ -31,14 +31,14 @@ public class OrderServiceTest {
     @DisplayName("주문 생성에 대한 통합테스트")
     void saveOrder() {
 
-        // given : 테스트를 위해 주어질 값들
+        // given: 테스트를 위해 주어질 값들
         userRepository.saveAndFlush(new User("test", 10000L));
         productRepository.saveAndFlush(new Product("1234", "짬뽕", 100L, 10L));
 
-        // when : 어떤 것을 테스트할지 정의
+        // when: 어떤 것을 테스트할지 정의
         OrderResponse order = orderService.saveOrder("test",  List.of(new OrderProductInfo("1234", 3L)));
 
-        // then : 값에 대한 검증
+        // then: 값에 대한 검증
         assert order != null;
     }
 

@@ -16,7 +16,7 @@ public class PointController {
     private final PointService pointService;
 
     @PutMapping("/point")
-    public ApiResponse<PointResponse> updatepoint(@RequestBody PointRequest request) {
+    public ApiResponse<PointResponse> updatePoint(@RequestBody PointRequest request) {
         return ApiResponse.ok(pointService.updatePoint(request.toService()));
     }
 }

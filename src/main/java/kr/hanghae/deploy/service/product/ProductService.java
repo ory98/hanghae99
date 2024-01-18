@@ -27,7 +27,7 @@ public class ProductService {
 
     public ProductBestResponse getProductBest() {
 
-        // 조회 시 - 오늘 00시에 오늘 날짜 기준으로 4일전 기록 다 가져오기 > where 절 넣기
+        // 조회 시 - 오늘 00시에 오늘 날짜 기준으로 4일전 기록 다 가져오기 > where 절 넣기 > 레디스로 처리 ,,,?
          List<OrderProduct> orderProductList = orderProductRepository.findAll();
 
          // orderby

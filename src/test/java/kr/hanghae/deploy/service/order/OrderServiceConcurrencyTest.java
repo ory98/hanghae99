@@ -50,7 +50,7 @@ public class OrderServiceConcurrencyTest {
 
     @Test
     @DisplayName("주문 생성 시 여러 주문이 들어왔을 경우, 재고가 없을 경우 주문이 취소된다.")
-    void orderConcurrencyStockTest() throws InterruptedException {
+    void orderConcurrencyStockTest_fail() throws InterruptedException {
         int latchCount = 100;
         AtomicInteger successCount = new AtomicInteger();
         AtomicInteger failCount = new AtomicInteger();
@@ -92,7 +92,7 @@ public class OrderServiceConcurrencyTest {
 
     @Test
     @DisplayName("주문 생성 시 여러 주문이 들어왔을 경우, 사용자의 포인트가 없을 경우 주문이 취소된다.")
-    void orderConcurrencyPointTest() throws InterruptedException {
+    void orderConcurrencyPointTest_fail() throws InterruptedException {
         int latchCount = 100;
         AtomicInteger successCount = new AtomicInteger();
         AtomicInteger failCount = new AtomicInteger();
@@ -135,7 +135,7 @@ public class OrderServiceConcurrencyTest {
 
     @Test
     @DisplayName("주문 생성 시 10개 주문이 들어왔을 경우, 주문이 10개 성공한다.")
-    void orderConcurrencySuccessTest() throws InterruptedException {
+    void orderConcurrencyTest_success() throws InterruptedException {
         int latchCount = 10;
         AtomicInteger successCount = new AtomicInteger();
         AtomicInteger failCount = new AtomicInteger();

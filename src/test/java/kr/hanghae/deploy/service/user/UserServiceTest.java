@@ -29,7 +29,7 @@ class UserServiceTest {
 
     @Test
     @DisplayName("유저 이름이 존재하는지 확인하고 없으면 저장시킨다")
-    void saveUser() {
+    void saveUser_success() {
         // given
         User user = new User("test");
         given(userRepository.findByUsername(anyString())).willReturn(Optional.empty());
@@ -45,7 +45,7 @@ class UserServiceTest {
 
     @Test
     @DisplayName("유저 이름이 존재하는지 확인하고 존재할 경우 실패한다")
-    void saveUserFail() {
+    void saveUse_fail() {
         // given
         User user = new User("test");
         given(userRepository.findByUsername(anyString())).willReturn(Optional.of(user));

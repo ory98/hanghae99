@@ -24,6 +24,7 @@ class UserRepositoryTest { // entity Test 호환이 잘 되는지
         userRepository.saveAndFlush(user); // saveAndFlush DB에 바로 커밋
 
         // when: 어떤 것을 테스트할지 정의
+        // todo: 결과가 두개 나옴 수정 요망
         User findUser = userRepository.findByUsername("A").get();
 
         // then: 값에 대한 검증을 하는 단계

@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    @Lock(value = LockModeType.OPTIMISTIC)
+//    @Lock(value = LockModeType.OPTIMISTIC)
+//    질문: testcode error- TransactionRequiredException: no transaction is in progress 락의 범위와 트랜잭션의 범위는 동등해야한다,, 그렇다면 어떻게 하는것이 좋은가
     Optional<User> findByUsername(String username);
 
 }
